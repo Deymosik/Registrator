@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина</title>
+</head>
+<body>
+    <style>
+        /* Дополнительные стили для страницы корзины */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.cart-content {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+}
+
+img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+/* Ваши существующие стили остаются без изменений */
+
+    </style>
+  <header>
+    <h1>Корзина</h1>
+  </header>
+
+  <div class="cart-content">
+    <ul id="cart-items"></ul>
+    <button onclick="closeCart()">Продолжить покупки</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
