@@ -1,8 +1,8 @@
-var usernameInput = document.getElementById('username');
-var emailInput = document.getElementById('email');
-var passwordInput = document.getElementById('password');
-var confirmPasswordInput = document.getElementById('confirm-password');
-var registerButton = document.getElementById('register-button');
+let usernameInput = document.getElementById('username');
+let emailInput = document.getElementById('email');
+let passwordInput = document.getElementById('password');
+let confirmPasswordInput = document.getElementById('confirm-password');
+let registerButton = document.getElementById('register-button');
 
 document.addEventListener('DOMContentLoaded', function () {
     
@@ -30,7 +30,7 @@ function Check(){
 }
 
 function toggleMobileMenu(){
-    var mobileMenu = document.querySelector('.mobile-menu');
+    let mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.style.top = (mobileMenu.style.top === '0px') ? '-100%' : '0px';
   }
 
@@ -39,10 +39,10 @@ function toggleMobileMenu(){
   async function validateForm(event) {
     event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
   
-    var usernameError = document.getElementById('username-error');
-    var emailError = document.getElementById('email-error');
-    var passwordError = document.getElementById('password-error');
-    var confirmPasswordError = document.getElementById('confirm-password-error');
+    let usernameError = document.getElementById('username-error');
+    let emailError = document.getElementById('email-error');
+    let passwordError = document.getElementById('password-error');
+    let confirmPasswordError = document.getElementById('confirm-password-error');
   
     // Очищаем сообщения об ошибках
     usernameError.innerHTML = '';
@@ -52,21 +52,21 @@ function toggleMobileMenu(){
   
     // Создаем массив для хранения сообщений об ошибках
     const errors = [];
-  
-    // Проверка имени
-    if (!/^[а-яА-ЯёЁa-zA-Z\s\-]+$/.test(usernameInput.value) || usernameInput.value.length < 2 || usernameInput.value.length > 14) {
+
+// Проверка имени (теперь пропускает только кириллицу)
+    if (!/^[а-яА-ЯёЁ\s\-]+$/.test(usernameInput.value) || usernameInput.value.length < 4 || usernameInput.value.length > 14) {
       errors.push('Введите корректное имя');
       usernameInput.style.borderColor = 'red';
     }
-  
-    // Проверка email
-    if (!/^[a-zA-Z0-9.\-_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailInput.value) || emailInput.value.length < 5 || emailInput.value.length > 50) {
+
+// Проверка email (теперь проверяет только наличие "@")
+    if (emailInput.value.indexOf('@') === -1 || emailInput.value.length < 7 || emailInput.value.length > 50) {
       errors.push('Некорректный e-mail');
       emailInput.style.borderColor = 'red';
     }
-  
-    // Проверка пароля
-    if (!/^[а-яА-ЯёЁa-zA-Z0-9\s\-_!@#$%^&*()+=`~{}[\]:;<>,.?/\\]+$/.test(passwordInput.value) || passwordInput.value.length < 6 || passwordInput.value.length > 50) {
+
+// Проверка пароля (теперь не пропускает кириллицу, но пропускает другие символы)
+    if (!/^[a-zA-Z0-9\s\-_!@#$%^&*()+=`~{}[\]:;<>,.?/\\]+$/.test(passwordInput.value) || passwordInput.value.length <= 6 || passwordInput.value.length > 50) {
       errors.push('Некорректный пароль');
       passwordInput.style.borderColor = 'red';
     }
@@ -120,7 +120,7 @@ function toggleMobileMenu(){
     localStorage.setItem('users', JSON.stringify(storedUsers));
   
     // Если все условия соблюдены, показываем сообщение об успешной регистрации
-    var successMessage = document.getElementById('success-message');
+    let successMessage = document.getElementById('success-message');
     successMessage.innerHTML = 'Регистрация успешна!';
     successMessage.style.display = 'block';
   
